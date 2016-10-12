@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%p %d{dd MMM yyyy HH:mm:ss,SSS} [%t] - %m%n"/>
+        </Console>
+        <RollingFile name="rootLogger" fileName="./logs/elastic-java-api.log"
+                     filePattern="./logs/elastic-java-api.log.%i.gz">
+            <PatternLayout pattern="%p %d{dd MMM yyyy HH:mm:ss,SSS} [%t] - %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="exceptionLogger"
+                     fileName="./logs/elastic-java-api-exceptions.log"
+                     filePattern="./logs/elastic-java-api-exceptions.log.%i.gz">
+            <PatternLayout pattern="%p %d{dd MMM yyyy HH:mm:ss,SSS} [%t] - %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="stdout"/>
+        </Root>
+        <Logger name="rootLogger" level="info">
+            <AppenderRef ref="rootLogger"/>
+        </Logger>
+        <Logger name="exceptionLogger" level="info">
+            <AppenderRef ref="exceptionLogger"/>
+        </Logger>
+    </Loggers>
+</Configuration>
