@@ -1,5 +1,3 @@
-elastic-java-api
-
 # elastic-java-api
 Elasticsearch JAVA API with custom search parameters
 
